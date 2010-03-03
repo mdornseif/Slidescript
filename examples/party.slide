@@ -1,0 +1,13 @@
+    DauerParty = 9
+    StundenlohnHelfer = 15
+    AnzahlBesucher = 500
+    KostenRaum = 3000
+    KostenDJ = 300 + (DauerParty * StundenlohnHelfer * 2)
+    VerzehrProBesucher = 20
+    AnzahlThekenhelfer = AnzahlBesucher/40
+    KostenThekenhelfer = AnzahlThekenhelfer * StundenlohnHelfer * DauerParty
+    KostenFix = KostenThekenhelfer + KostenRaum + KostenDJ
+    KostenProBesucher = (KostenFix / AnzahlBesucher) + VerzehrProBesucher
+    Rohertrag = 1
+    Eintrittspreis = KostenProBesucher * (1+Rohertrag)
+    Foo = 123

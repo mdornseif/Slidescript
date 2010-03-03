@@ -1,0 +1,4 @@
+    AnzahlBesucher = 500
+    VerzehrProBesucher = 20
+    VerzehrKosten = AnzahlBesucher * VerzehrProBesucher
+    Foo = Bar

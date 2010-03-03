@@ -1,5 +1,9 @@
 default:
-	java -cp ./antlrworks-1.2.2.jar org.antlr.Tool Slidescript.g 
+	java -cp ./antlrworks-1.3.1.jar org.antlr.Tool Slidescript.g
+
+examples:
+	./pythonenv/bin/python slidescript.py examples/party.slide --dot examples/party.dot
+	dot -Tpng -v -o examples/party.png examples/party.dot
 
 dependencies:
 	virtualenv pythonenv
@@ -7,3 +11,5 @@ dependencies:
 
 clean:
 	rm Slidescript.tokens SlidescriptLexer.* SlidescriptParser.*
+
+.PHONY: examples

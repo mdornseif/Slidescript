@@ -11,10 +11,10 @@ tokens { ASSIGNMENT;
          CODE; }
 
 /* This will be the entry point of our parser. */
-program:   ( code { print $code.tree.toStringTree() } ) ;
-code: ( stat )+ -> ^(CODE stat+) ;
+program:   ( code ) ;
+code: ( stat )+ EOF -> ^(CODE stat+) ;
 
-stat:   additionExp NEWLINE        -> additionExp
+stat:   additionExp NEWLINE -> additionExp
     |   VARIABLE '=' additionExp NEWLINE -> ^(ASSIGNMENT VARIABLE additionExp)
     |   NEWLINE ->
     ;
@@ -51,6 +51,8 @@ MAL: '*';
 DURCH: '/';
 
 NEWLINE: '\r'? '\n';
+
+FOURSPACES: '    ' { $channel = HIDDEN; };
 
 /* We're going to ignore all white space characters */
 WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+ { $channel = HIDDEN; };
