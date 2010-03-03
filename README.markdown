@@ -59,8 +59,9 @@ Ausgabeformate
 
 Der Slidescript Compiler kann eine Datei erstellen, die mit
 [Graphviz][graphviz] die Abhaengigkeiten der verschiedenen Variablen
-visualisieren kann. Das Ergebnis sieht dann etwas so aus:
+visualisieren kann. Das Ergebnis von [party.slide][party.slide] sieht dann etwas so aus:
 
 ![Dependency graph](http://static.23.nu/md/Pictures/ZZ74E8162F.png)
 
 [graphviz]: http://www.graphviz.org/
+[party.slide]: http://github.com/mdornseif/Slidescript/blob/master/examples/party.slide
