@@ -1,5 +1,5 @@
 default:
-	java -cp ./antlrworks-1.3.1.jar org.antlr.Tool Slidescript.g
+	java -cp ./lib/antlrworks-1.3.1.jar org.antlr.Tool Slidescript.g
 
 examples:
 	./pythonenv/bin/python slidescript.py examples/party.slide --dot examples/party.dot
