@@ -46,10 +46,10 @@ Der Slidescript Compiler kann die Programme in zahlreiche andere Formate
 umwandeln (oder er wird es bald können). Folgende Formate kommen in Frage:
 
 * Graphviz DOT
-* XLS (Excel) Kalkulationsblatt (TBD)
-* Javascript in HTML eingebettet (mit jQuery) (TBD)
-* Python (TBD)
-* Ruby (TBD)
+* XLS (Excel) Kalkulationsblatt
+* Javascript und HTML (mit jQuery)
+* Python Klasse
+* LaTeX (TBD)
 
 
 Ausgabeformate
