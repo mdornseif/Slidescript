@@ -88,3 +88,11 @@ und Fixen werte aus dem Quellcode beinhalten und z.B. als
 Kalkulationsgrundlage zu nutzen sind.
 
 
+Installation
+------------
+
+Slidescript ist ein Komandozeilentool für Unixoide Betriebssysteme. Laden Sie
+den Quellcode von http://github.com/mdornseif/Slidescript/archives/master
+herunter und geben sie im Verzeichnis, das Sie herungter geladen haben `sudo
+make install` ein. Danach können Sie mit `slidec --help` mehr über dne
+Compiler erfahren.

@@ -1,4 +1,4 @@
-# $ANTLR 3.2 Sep 23, 2009 12:02:23 Slidescript.g 2010-03-05 07:40:49
+# $ANTLR 3.2 Sep 23, 2009 12:02:23 Slidescript.g 2010-03-05 08:18:13
 
 import sys
 from antlr3 import *
@@ -12,27 +12,30 @@ from antlr3.tree import *
 HIDDEN = BaseRecognizer.HIDDEN
 
 # token types
-FOURSPACES=13
-T__16=16
-T__15=15
-VARIABLE=7
-NEWLINE=6
-T__17=17
-MAL=10
-CONSTANT=12
-WHITESPACE=14
-PLUS=8
-ASSIGNMENT=4
+LINE_COMMENT=14
+WHITESPACE=16
 MINUS=9
 EOF=-1
 DURCH=11
 CODE=5
+T__19=19
+ML_COMMENT=13
+FOURSPACES=15
+T__18=18
+NEWLINE=6
+VARIABLE=7
+T__17=17
+MAL=10
+CONSTANT=12
+PLUS=8
+ASSIGNMENT=4
 
 # token names
 tokenNames = [
     "<invalid>", "<EOR>", "<DOWN>", "<UP>", 
     "ASSIGNMENT", "CODE", "NEWLINE", "VARIABLE", "PLUS", "MINUS", "MAL", 
-    "DURCH", "CONSTANT", "FOURSPACES", "WHITESPACE", "'='", "'('", "')'"
+    "DURCH", "CONSTANT", "ML_COMMENT", "LINE_COMMENT", "FOURSPACES", "WHITESPACE", 
+    "'='", "'('", "')'"
 ]
 
 
@@ -167,7 +170,7 @@ class SlidescriptParser(Parser):
                     alt1 = 2
                     LA1_0 = self.input.LA(1)
 
-                    if ((NEWLINE <= LA1_0 <= VARIABLE) or LA1_0 == CONSTANT or LA1_0 == 16) :
+                    if ((NEWLINE <= LA1_0 <= VARIABLE) or LA1_0 == CONSTANT or LA1_0 == 18) :
                         alt1 = 1
 
 
@@ -285,19 +288,19 @@ class SlidescriptParser(Parser):
         NEWLINE10_tree = None
         stream_VARIABLE = RewriteRuleTokenStream(self._adaptor, "token VARIABLE")
         stream_NEWLINE = RewriteRuleTokenStream(self._adaptor, "token NEWLINE")
-        stream_15 = RewriteRuleTokenStream(self._adaptor, "token 15")
+        stream_17 = RewriteRuleTokenStream(self._adaptor, "token 17")
         stream_additionExp = RewriteRuleSubtreeStream(self._adaptor, "rule additionExp")
         try:
             try:
                 # Slidescript.g:17:5: ( additionExp NEWLINE -> additionExp | VARIABLE '=' additionExp NEWLINE -> ^( ASSIGNMENT VARIABLE additionExp ) | NEWLINE ->)
                 alt2 = 3
                 LA2 = self.input.LA(1)
-                if LA2 == CONSTANT or LA2 == 16:
+                if LA2 == CONSTANT or LA2 == 18:
                     alt2 = 1
                 elif LA2 == VARIABLE:
                     LA2_2 = self.input.LA(2)
 
-                    if (LA2_2 == 15) :
+                    if (LA2_2 == 17) :
                         alt2 = 2
                     elif (LA2_2 == NEWLINE or (PLUS <= LA2_2 <= DURCH)) :
                         alt2 = 1
@@ -354,8 +357,8 @@ class SlidescriptParser(Parser):
                     pass 
                     VARIABLE6=self.match(self.input, VARIABLE, self.FOLLOW_VARIABLE_in_stat116) 
                     stream_VARIABLE.add(VARIABLE6)
-                    char_literal7=self.match(self.input, 15, self.FOLLOW_15_in_stat118) 
-                    stream_15.add(char_literal7)
+                    char_literal7=self.match(self.input, 17, self.FOLLOW_17_in_stat118) 
+                    stream_17.add(char_literal7)
                     self._state.following.append(self.FOLLOW_additionExp_in_stat120)
                     additionExp8 = self.additionExp()
 
@@ -715,7 +718,7 @@ class SlidescriptParser(Parser):
                     alt7 = 1
                 elif LA7 == VARIABLE:
                     alt7 = 2
-                elif LA7 == 16:
+                elif LA7 == 18:
                     alt7 = 3
                 else:
                     nvae = NoViableAltException("", 7, 0, self.input)
@@ -751,13 +754,13 @@ class SlidescriptParser(Parser):
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    char_literal21=self.match(self.input, 16, self.FOLLOW_16_in_atomExp256)
+                    char_literal21=self.match(self.input, 18, self.FOLLOW_18_in_atomExp256)
                     self._state.following.append(self.FOLLOW_additionExp_in_atomExp259)
                     additionExp22 = self.additionExp()
 
                     self._state.following.pop()
                     self._adaptor.addChild(root_0, additionExp22.tree)
-                    char_literal23=self.match(self.input, 17, self.FOLLOW_17_in_atomExp261)
+                    char_literal23=self.match(self.input, 19, self.FOLLOW_19_in_atomExp261)
 
 
                 retval.stop = self.input.LT(-1)
@@ -785,28 +788,28 @@ class SlidescriptParser(Parser):
  
 
     FOLLOW_code_in_program65 = frozenset([1])
-    FOLLOW_stat_in_code76 = frozenset([6, 7, 12, 16])
+    FOLLOW_stat_in_code76 = frozenset([6, 7, 12, 18])
     FOLLOW_EOF_in_code81 = frozenset([1])
     FOLLOW_additionExp_in_stat100 = frozenset([6])
     FOLLOW_NEWLINE_in_stat102 = frozenset([1])
-    FOLLOW_VARIABLE_in_stat116 = frozenset([15])
-    FOLLOW_15_in_stat118 = frozenset([7, 12, 16])
+    FOLLOW_VARIABLE_in_stat116 = frozenset([17])
+    FOLLOW_17_in_stat118 = frozenset([7, 12, 18])
     FOLLOW_additionExp_in_stat120 = frozenset([6])
     FOLLOW_NEWLINE_in_stat122 = frozenset([1])
     FOLLOW_NEWLINE_in_stat142 = frozenset([1])
     FOLLOW_multiplyExp_in_additionExp168 = frozenset([1, 8, 9])
-    FOLLOW_PLUS_in_additionExp172 = frozenset([7, 12, 16])
-    FOLLOW_MINUS_in_additionExp175 = frozenset([7, 12, 16])
+    FOLLOW_PLUS_in_additionExp172 = frozenset([7, 12, 18])
+    FOLLOW_MINUS_in_additionExp175 = frozenset([7, 12, 18])
     FOLLOW_multiplyExp_in_additionExp179 = frozenset([1, 8, 9])
     FOLLOW_atomExp_in_multiplyExp202 = frozenset([1, 10, 11])
-    FOLLOW_MAL_in_multiplyExp206 = frozenset([7, 12, 16])
-    FOLLOW_DURCH_in_multiplyExp209 = frozenset([7, 12, 16])
+    FOLLOW_MAL_in_multiplyExp206 = frozenset([7, 12, 18])
+    FOLLOW_DURCH_in_multiplyExp209 = frozenset([7, 12, 18])
     FOLLOW_atomExp_in_multiplyExp213 = frozenset([1, 10, 11])
     FOLLOW_CONSTANT_in_atomExp236 = frozenset([1])
     FOLLOW_VARIABLE_in_atomExp246 = frozenset([1])
-    FOLLOW_16_in_atomExp256 = frozenset([7, 12, 16])
-    FOLLOW_additionExp_in_atomExp259 = frozenset([17])
-    FOLLOW_17_in_atomExp261 = frozenset([1])
+    FOLLOW_18_in_atomExp256 = frozenset([7, 12, 18])
+    FOLLOW_additionExp_in_atomExp259 = frozenset([19])
+    FOLLOW_19_in_atomExp261 = frozenset([1])
 
 
 

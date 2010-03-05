@@ -1,5 +1,6 @@
 default:
 	(cd slidescript ; java -cp ../lib/antlrworks-1.3.1.jar org.antlr.Tool Slidescript.g)
+	(cd test ; make)
 
 examples:
 	./pythonenv/bin/python slidec examples/party.slide --resolved examples/party.vars
@@ -21,4 +22,11 @@ install:
 	python setup.py install
 
 
-.PHONY: examples
+.PHONY: examples# Dependencies for File:     VerzehrKosten = ('*', u'AnzahlBesucher', 20.0)
+    VerzehrProBesucher = 20.0
+    AnzahlBesucher = ?Unknown
+
+# Dependencies for File:     VerzehrKosten = ('*', u'AnzahlBesucher', 20.0)
+    VerzehrProBesucher = 20.0
+    AnzahlBesucher = ?Unknown
+

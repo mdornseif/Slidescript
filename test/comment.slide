@@ -1,0 +1,6 @@
+    // AnzahlBesucher = 12345
+    VerzehrProBesucher = 20
+    /* this should
+    be ignored */
+    VerzehrKosten = AnzahlBesucher * VerzehrProBesucher
+    Foo = Bar

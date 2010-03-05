@@ -52,6 +52,14 @@ DURCH: '/';
 
 NEWLINE: '\r'? '\n';
 
+ML_COMMENT
+    :   '/*' (options {greedy=false;} : .)* '*/' {$channel=HIDDEN;}
+    ;
+
+LINE_COMMENT
+    : '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
+;
+
 FOURSPACES: '    ' { $channel = HIDDEN; };
 
 /* We're going to ignore all white space characters */

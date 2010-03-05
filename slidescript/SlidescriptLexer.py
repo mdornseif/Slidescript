@@ -1,4 +1,4 @@
-# $ANTLR 3.2 Sep 23, 2009 12:02:23 Slidescript.g 2010-03-05 07:40:49
+# $ANTLR 3.2 Sep 23, 2009 12:02:23 Slidescript.g 2010-03-05 08:18:13
 
 import sys
 from antlr3 import *
@@ -9,21 +9,23 @@ from antlr3.compat import set, frozenset
 HIDDEN = BaseRecognizer.HIDDEN
 
 # token types
-FOURSPACES=13
-T__16=16
-T__15=15
+LINE_COMMENT=14
+WHITESPACE=16
+MINUS=9
+EOF=-1
+DURCH=11
+CODE=5
+T__19=19
+ML_COMMENT=13
+FOURSPACES=15
+T__18=18
 NEWLINE=6
 VARIABLE=7
 T__17=17
 MAL=10
 CONSTANT=12
-WHITESPACE=14
 PLUS=8
 ASSIGNMENT=4
-MINUS=9
-EOF=-1
-DURCH=11
-CODE=5
 
 
 class SlidescriptLexer(Lexer):
@@ -38,15 +40,15 @@ class SlidescriptLexer(Lexer):
         super(SlidescriptLexer, self).__init__(input, state)
 
 
-        self.dfa7 = self.DFA7(
-            self, 7,
-            eot = self.DFA7_eot,
-            eof = self.DFA7_eof,
-            min = self.DFA7_min,
-            max = self.DFA7_max,
-            accept = self.DFA7_accept,
-            special = self.DFA7_special,
-            transition = self.DFA7_transition
+        self.dfa10 = self.DFA10(
+            self, 10,
+            eot = self.DFA10_eot,
+            eof = self.DFA10_eof,
+            min = self.DFA10_min,
+            max = self.DFA10_max,
+            accept = self.DFA10_accept,
+            special = self.DFA10_special,
+            transition = self.DFA10_transition
             )
 
 
@@ -54,11 +56,11 @@ class SlidescriptLexer(Lexer):
 
 
 
-    # $ANTLR start "T__15"
-    def mT__15(self, ):
+    # $ANTLR start "T__17"
+    def mT__17(self, ):
 
         try:
-            _type = T__15
+            _type = T__17
             _channel = DEFAULT_CHANNEL
 
             # Slidescript.g:7:7: ( '=' )
@@ -75,15 +77,15 @@ class SlidescriptLexer(Lexer):
 
             pass
 
-    # $ANTLR end "T__15"
+    # $ANTLR end "T__17"
 
 
 
-    # $ANTLR start "T__16"
-    def mT__16(self, ):
+    # $ANTLR start "T__18"
+    def mT__18(self, ):
 
         try:
-            _type = T__16
+            _type = T__18
             _channel = DEFAULT_CHANNEL
 
             # Slidescript.g:8:7: ( '(' )
@@ -100,15 +102,15 @@ class SlidescriptLexer(Lexer):
 
             pass
 
-    # $ANTLR end "T__16"
+    # $ANTLR end "T__18"
 
 
 
-    # $ANTLR start "T__17"
-    def mT__17(self, ):
+    # $ANTLR start "T__19"
+    def mT__19(self, ):
 
         try:
-            _type = T__17
+            _type = T__19
             _channel = DEFAULT_CHANNEL
 
             # Slidescript.g:9:7: ( ')' )
@@ -125,7 +127,7 @@ class SlidescriptLexer(Lexer):
 
             pass
 
-    # $ANTLR end "T__17"
+    # $ANTLR end "T__19"
 
 
 
@@ -413,6 +415,126 @@ class SlidescriptLexer(Lexer):
 
 
 
+    # $ANTLR start "ML_COMMENT"
+    def mML_COMMENT(self, ):
+
+        try:
+            _type = ML_COMMENT
+            _channel = DEFAULT_CHANNEL
+
+            # Slidescript.g:56:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            # Slidescript.g:56:9: '/*' ( options {greedy=false; } : . )* '*/'
+            pass 
+            self.match("/*")
+            # Slidescript.g:56:14: ( options {greedy=false; } : . )*
+            while True: #loop6
+                alt6 = 2
+                LA6_0 = self.input.LA(1)
+
+                if (LA6_0 == 42) :
+                    LA6_1 = self.input.LA(2)
+
+                    if (LA6_1 == 47) :
+                        alt6 = 2
+                    elif ((0 <= LA6_1 <= 46) or (48 <= LA6_1 <= 65535)) :
+                        alt6 = 1
+
+
+                elif ((0 <= LA6_0 <= 41) or (43 <= LA6_0 <= 65535)) :
+                    alt6 = 1
+
+
+                if alt6 == 1:
+                    # Slidescript.g:56:41: .
+                    pass 
+                    self.matchAny()
+
+
+                else:
+                    break #loop6
+            self.match("*/")
+            #action start
+            _channel=HIDDEN;
+            #action end
+
+
+
+            self._state.type = _type
+            self._state.channel = _channel
+
+        finally:
+
+            pass
+
+    # $ANTLR end "ML_COMMENT"
+
+
+
+    # $ANTLR start "LINE_COMMENT"
+    def mLINE_COMMENT(self, ):
+
+        try:
+            _type = LINE_COMMENT
+            _channel = DEFAULT_CHANNEL
+
+            # Slidescript.g:60:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            # Slidescript.g:60:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            pass 
+            self.match("//")
+            # Slidescript.g:60:12: (~ ( '\\n' | '\\r' ) )*
+            while True: #loop7
+                alt7 = 2
+                LA7_0 = self.input.LA(1)
+
+                if ((0 <= LA7_0 <= 9) or (11 <= LA7_0 <= 12) or (14 <= LA7_0 <= 65535)) :
+                    alt7 = 1
+
+
+                if alt7 == 1:
+                    # Slidescript.g:60:12: ~ ( '\\n' | '\\r' )
+                    pass 
+                    if (0 <= self.input.LA(1) <= 9) or (11 <= self.input.LA(1) <= 12) or (14 <= self.input.LA(1) <= 65535):
+                        self.input.consume()
+                    else:
+                        mse = MismatchedSetException(None, self.input)
+                        self.recover(mse)
+                        raise mse
+
+
+
+                else:
+                    break #loop7
+            # Slidescript.g:60:26: ( '\\r' )?
+            alt8 = 2
+            LA8_0 = self.input.LA(1)
+
+            if (LA8_0 == 13) :
+                alt8 = 1
+            if alt8 == 1:
+                # Slidescript.g:60:26: '\\r'
+                pass 
+                self.match(13)
+
+
+
+            self.match(10)
+            #action start
+            _channel=HIDDEN;
+            #action end
+
+
+
+            self._state.type = _type
+            self._state.channel = _channel
+
+        finally:
+
+            pass
+
+    # $ANTLR end "LINE_COMMENT"
+
+
+
     # $ANTLR start "FOURSPACES"
     def mFOURSPACES(self, ):
 
@@ -420,8 +542,8 @@ class SlidescriptLexer(Lexer):
             _type = FOURSPACES
             _channel = DEFAULT_CHANNEL
 
-            # Slidescript.g:55:11: ( ' ' )
-            # Slidescript.g:55:13: ' '
+            # Slidescript.g:63:11: ( ' ' )
+            # Slidescript.g:63:13: ' '
             pass 
             self.match("    ")
             #action start
@@ -448,20 +570,20 @@ class SlidescriptLexer(Lexer):
             _type = WHITESPACE
             _channel = DEFAULT_CHANNEL
 
-            # Slidescript.g:58:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
-            # Slidescript.g:58:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            # Slidescript.g:66:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
+            # Slidescript.g:66:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             pass 
-            # Slidescript.g:58:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
-            cnt6 = 0
-            while True: #loop6
-                alt6 = 2
-                LA6_0 = self.input.LA(1)
+            # Slidescript.g:66:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            cnt9 = 0
+            while True: #loop9
+                alt9 = 2
+                LA9_0 = self.input.LA(1)
 
-                if ((9 <= LA6_0 <= 10) or (12 <= LA6_0 <= 13) or LA6_0 == 32) :
-                    alt6 = 1
+                if ((9 <= LA9_0 <= 10) or (12 <= LA9_0 <= 13) or LA9_0 == 32) :
+                    alt9 = 1
 
 
-                if alt6 == 1:
+                if alt9 == 1:
                     # Slidescript.g:
                     pass 
                     if (9 <= self.input.LA(1) <= 10) or (12 <= self.input.LA(1) <= 13) or self.input.LA(1) == 32:
@@ -474,13 +596,13 @@ class SlidescriptLexer(Lexer):
 
 
                 else:
-                    if cnt6 >= 1:
-                        break #loop6
+                    if cnt9 >= 1:
+                        break #loop9
 
-                    eee = EarlyExitException(6, self.input)
+                    eee = EarlyExitException(9, self.input)
                     raise eee
 
-                cnt6 += 1
+                cnt9 += 1
             #action start
             _channel = HIDDEN; 
             #action end
@@ -499,77 +621,89 @@ class SlidescriptLexer(Lexer):
 
 
     def mTokens(self):
-        # Slidescript.g:1:8: ( T__15 | T__16 | T__17 | CONSTANT | VARIABLE | PLUS | MINUS | MAL | DURCH | NEWLINE | FOURSPACES | WHITESPACE )
-        alt7 = 12
-        alt7 = self.dfa7.predict(self.input)
-        if alt7 == 1:
-            # Slidescript.g:1:10: T__15
-            pass 
-            self.mT__15()
-
-
-        elif alt7 == 2:
-            # Slidescript.g:1:16: T__16
-            pass 
-            self.mT__16()
-
-
-        elif alt7 == 3:
-            # Slidescript.g:1:22: T__17
+        # Slidescript.g:1:8: ( T__17 | T__18 | T__19 | CONSTANT | VARIABLE | PLUS | MINUS | MAL | DURCH | NEWLINE | ML_COMMENT | LINE_COMMENT | FOURSPACES | WHITESPACE )
+        alt10 = 14
+        alt10 = self.dfa10.predict(self.input)
+        if alt10 == 1:
+            # Slidescript.g:1:10: T__17
             pass 
             self.mT__17()
 
 
-        elif alt7 == 4:
+        elif alt10 == 2:
+            # Slidescript.g:1:16: T__18
+            pass 
+            self.mT__18()
+
+
+        elif alt10 == 3:
+            # Slidescript.g:1:22: T__19
+            pass 
+            self.mT__19()
+
+
+        elif alt10 == 4:
             # Slidescript.g:1:28: CONSTANT
             pass 
             self.mCONSTANT()
 
 
-        elif alt7 == 5:
+        elif alt10 == 5:
             # Slidescript.g:1:37: VARIABLE
             pass 
             self.mVARIABLE()
 
 
-        elif alt7 == 6:
+        elif alt10 == 6:
             # Slidescript.g:1:46: PLUS
             pass 
             self.mPLUS()
 
 
-        elif alt7 == 7:
+        elif alt10 == 7:
             # Slidescript.g:1:51: MINUS
             pass 
             self.mMINUS()
 
 
-        elif alt7 == 8:
+        elif alt10 == 8:
             # Slidescript.g:1:57: MAL
             pass 
             self.mMAL()
 
 
-        elif alt7 == 9:
+        elif alt10 == 9:
             # Slidescript.g:1:61: DURCH
             pass 
             self.mDURCH()
 
 
-        elif alt7 == 10:
+        elif alt10 == 10:
             # Slidescript.g:1:67: NEWLINE
             pass 
             self.mNEWLINE()
 
 
-        elif alt7 == 11:
-            # Slidescript.g:1:75: FOURSPACES
+        elif alt10 == 11:
+            # Slidescript.g:1:75: ML_COMMENT
+            pass 
+            self.mML_COMMENT()
+
+
+        elif alt10 == 12:
+            # Slidescript.g:1:86: LINE_COMMENT
+            pass 
+            self.mLINE_COMMENT()
+
+
+        elif alt10 == 13:
+            # Slidescript.g:1:99: FOURSPACES
             pass 
             self.mFOURSPACES()
 
 
-        elif alt7 == 12:
-            # Slidescript.g:1:86: WHITESPACE
+        elif alt10 == 14:
+            # Slidescript.g:1:110: WHITESPACE
             pass 
             self.mWHITESPACE()
 
@@ -579,35 +713,35 @@ class SlidescriptLexer(Lexer):
 
 
 
-    # lookup tables for DFA #7
+    # lookup tables for DFA #10
 
-    DFA7_eot = DFA.unpack(
-        u"\12\uffff\1\15\1\16\1\15\2\uffff\2\15\1\22\1\uffff"
+    DFA10_eot = DFA.unpack(
+        u"\11\uffff\1\20\1\15\1\21\1\15\5\uffff\2\15\1\25\1\uffff"
         )
 
-    DFA7_eof = DFA.unpack(
-        u"\23\uffff"
+    DFA10_eof = DFA.unpack(
+        u"\26\uffff"
         )
 
-    DFA7_min = DFA.unpack(
-        u"\1\11\11\uffff\1\12\1\11\1\40\2\uffff\2\40\1\11\1\uffff"
+    DFA10_min = DFA.unpack(
+        u"\1\11\10\uffff\1\52\1\12\1\11\1\40\5\uffff\2\40\1\11\1\uffff"
         )
 
-    DFA7_max = DFA.unpack(
-        u"\1\132\11\uffff\1\12\2\40\2\uffff\3\40\1\uffff"
+    DFA10_max = DFA.unpack(
+        u"\1\132\10\uffff\1\57\1\12\2\40\5\uffff\3\40\1\uffff"
         )
 
-    DFA7_accept = DFA.unpack(
-        u"\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\3\uffff\1\14\1\12"
-        u"\3\uffff\1\13"
+    DFA10_accept = DFA.unpack(
+        u"\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\4\uffff\1\16\1\13\1\14"
+        u"\1\11\1\12\3\uffff\1\15"
         )
 
-    DFA7_special = DFA.unpack(
-        u"\23\uffff"
+    DFA10_special = DFA.unpack(
+        u"\26\uffff"
         )
 
             
-    DFA7_transition = [
+    DFA10_transition = [
         DFA.unpack(u"\1\15\1\13\1\uffff\1\15\1\12\22\uffff\1\14\7\uffff\1"
         u"\2\1\3\1\10\1\6\1\uffff\1\7\1\uffff\1\11\12\4\3\uffff\1\1\3\uffff"
         u"\32\5"),
@@ -619,21 +753,24 @@ class SlidescriptLexer(Lexer):
         DFA.unpack(u""),
         DFA.unpack(u""),
         DFA.unpack(u""),
-        DFA.unpack(u""),
+        DFA.unpack(u"\1\16\4\uffff\1\17"),
         DFA.unpack(u"\1\13"),
         DFA.unpack(u"\2\15\1\uffff\2\15\22\uffff\1\15"),
-        DFA.unpack(u"\1\17"),
+        DFA.unpack(u"\1\22"),
         DFA.unpack(u""),
         DFA.unpack(u""),
-        DFA.unpack(u"\1\20"),
-        DFA.unpack(u"\1\21"),
+        DFA.unpack(u""),
+        DFA.unpack(u""),
+        DFA.unpack(u""),
+        DFA.unpack(u"\1\23"),
+        DFA.unpack(u"\1\24"),
         DFA.unpack(u"\2\15\1\uffff\2\15\22\uffff\1\15"),
         DFA.unpack(u"")
     ]
 
-    # class definition for DFA #7
+    # class definition for DFA #10
 
-    class DFA7(DFA):
+    class DFA10(DFA):
         pass
 
 

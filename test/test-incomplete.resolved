@@ -1,0 +1,3 @@
+    VerzehrKosten = ('*', u'AnzahlBesucher', 20.0)
+    VerzehrProBesucher = 20.0
+    AnzahlBesucher = ?Unknown
