@@ -30,8 +30,8 @@
 #
 # end[licensc]
 
-from antlr3.constants import EOF
-from antlr3.exceptions import NoViableAltException, BacktrackingFailed
+from slidescript.antlr3.constants import EOF
+from slidescript.antlr3.exceptions import NoViableAltException, BacktrackingFailed
 
 
 class DFA(object):

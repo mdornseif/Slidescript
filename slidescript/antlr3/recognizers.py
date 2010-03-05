@@ -33,16 +33,16 @@
 import sys
 import inspect
 
-from antlr3 import runtime_version, runtime_version_str
-from antlr3.constants import DEFAULT_CHANNEL, HIDDEN_CHANNEL, EOF, \
+from slidescript.antlr3 import runtime_version, runtime_version_str
+from slidescript.antlr3.constants import DEFAULT_CHANNEL, HIDDEN_CHANNEL, EOF, \
      EOR_TOKEN_TYPE, INVALID_TOKEN_TYPE
-from antlr3.exceptions import RecognitionException, MismatchedTokenException, \
+from slidescript.antlr3.exceptions import RecognitionException, MismatchedTokenException, \
      MismatchedRangeException, MismatchedTreeNodeException, \
      NoViableAltException, EarlyExitException, MismatchedSetException, \
      MismatchedNotSetException, FailedPredicateException, \
      BacktrackingFailed, UnwantedTokenException, MissingTokenException
-from antlr3.tokens import CommonToken, EOF_TOKEN, SKIP_TOKEN
-from antlr3.compat import set, frozenset, reversed
+from slidescript.antlr3.tokens import CommonToken, EOF_TOKEN, SKIP_TOKEN
+from slidescript.antlr3.compat import set, frozenset, reversed
 
 
 class RecognizerSharedState(object):
