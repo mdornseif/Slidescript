@@ -1,13 +1,40 @@
-    DauerParty = 9
-    StundenlohnHelfer = 15
+Hauptvariablen für unsere Veranstaltungen sind die erwartete Anzahl der
+Besucher und die Kosten für die Raummiete. Diese Müssen für jede PArty neu
+gesetzt werden.
+
     AnzahlBesucher = 500
     KostenRaum = 3000
+
+Arbeitszeit aller beteiligten ist in der Regel 18:00 bis 3:00h - danach
+berechnen sich die Lohnkosten. Der DJ wird PAuschal bezahlt, muss aber zwei
+Helfer gestellt bekommen. Für jeh 40 Besucher brauchen wir einen Thekenhelfer.
+
+    DauerParty = 9
+    StundenlohnHelfer = 15
     KostenDJ = 300 + (DauerParty * StundenlohnHelfer * 2)
-    VerzehrProBesucher = 20
-    AnzahlThekenhelfer = AnzahlBesucher/40
+    AnzahlThekenhelfer = AnzahlBesucher / 40
     KostenThekenhelfer = AnzahlThekenhelfer * StundenlohnHelfer * DauerParty
+
+Aus diesen Werten können wir die mehr oder weniger fixen Kosten abschätzen.
+Die Kosten für die Thekenhelfer sind zwar in diesem Modell von der Zahl der
+Besucher abhängig, müssten aber eigentlich als "sprungfixe Kosten" abgebildet
+werden - schliesslich kann man keine halben Thehenhelfer einstellen. Dazu
+fehlt aber bisher der Rundungs-Operator in Slideskript.
+
     KostenFix = KostenThekenhelfer + KostenRaum + KostenDJ
-    KostenProBesucher = (KostenFix / AnzahlBesucher) + VerzehrProBesucher
-    Rohertrag = 1
+
+Besucher können sich kostenkos mit Speisen am Buffet bedienen. Getränke
+verkaufen wir hingegen und gehen von einem Getränkegewinn von 1.2 Euro pro
+Stunde aus. Daraus ergeben sich die Kosten pro Besucher
+
+    VerzehrProBesucher = 10
+    GetraenkeverkaufProBesucher = 1.2 * DauerParty
+    KostenProBesucher = (KostenFix / AnzahlBesucher) + VerzehrProBesucher - GetraenkeverkaufProBesucher
+
+Wir wollen einen Rohertrag von 80% machen, aus dem wir unsere sonstigen Kosten
+decken. Mit den Kosten pro Besucher und dem gewünschten Rohertrag können wir
+den Eintrittspreis, den wir nehmen müssen, festlegen.
+
+    Rohertrag = 0.8
     Eintrittspreis = KostenProBesucher * (1+Rohertrag)
     Foo = 123

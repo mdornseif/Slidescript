@@ -431,7 +431,7 @@ class BaseRecognizer(object):
         What is the error header, normally line/character position information?
         """
         
-        return "line %d:%d" % (e.line, e.charPositionInLine)
+        return "line %s:%s" % (e.line, e.charPositionInLine)
 
 
     def getTokenErrorDisplay(self, t):
@@ -445,6 +445,8 @@ class BaseRecognizer(object):
         so that it creates a new Java type.
         """
         
+        if not getattr(t, 'text', None):
+            return "???"
         s = t.text
         if s is None:
             if t.type == EOF:

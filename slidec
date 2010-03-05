@@ -7,11 +7,10 @@ Created by Maximillian Dornseif on 2010-02-28.
 Copyright (c) 2010 HUDORA. All rights reserved.
 """
 
-from SlidescriptParser import *
-from antlr3 import *
-from antlr3.tree import *
-from pprint import pprint
-import SlidescriptLexer
+from slidescript.SlidescriptParser import *
+from slidescript.antlr3 import *
+from slidescript.antlr3.tree import *
+from slidescript import SlidescriptLexer
 import argparse
 import os.path
 import sys

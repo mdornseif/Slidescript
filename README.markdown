@@ -23,7 +23,7 @@ Mit dem Slidescript-Compiler kann man nun ein solches Programm verschiedene
 formate umwandeln. Im einfachsten Fall können die Variablen aufgelößt und
 ausgegeben werden.
 
-    $ ./slidescript.py examples/simple.slide --resolved
+    $ ./slidec examples/simple.slide --resolved
         VerzehrKosten = 10000.0
         VerzehrProBesucher = 20.0
         AnzahlBesucher = 500.0
@@ -37,7 +37,7 @@ Formeln werden dabei in Stack Notation ausgegeben.
 
 Die obige Datei führt zu folgender Ausgabe:
 
-    $ ./slidescript.py examples/incomplete.slide --resolved
+    $ ./slidec examples/incomplete.slide --resolved
         VerzehrKosten = ('*', u'AnzahlBesucher', 20.0)
         VerzehrProBesucher = 20.0
         AnzahlBesucher = ?Unknown
@@ -45,15 +45,21 @@ Die obige Datei führt zu folgender Ausgabe:
 Der Slidescript Compiler kann die Programme in zahlreiche andere Formate
 umwandeln (oder er wird es bald können). Folgende Formate kommen in Frage:
 
-* Graphviz DOT
-* XLS (Excel) Kalkulationsblatt
-* Javascript und HTML (mit jQuery)
 * Python Klasse
+* Graphviz DOT
+* Javascript und HTML (mit jQuery)
+* XLS (Excel) Kalkulationsblatt
 * LaTeX (TBD)
 
 
 Ausgabeformate
 --------------
+
+### Python
+
+Der Slidescriptcompiler kann eine Python Klasser erzeugen, die die Formeln aus
+dem Quellcode beinhaltet.
+
 
 ### Graphviz DOT
 
@@ -65,3 +71,20 @@ visualisieren kann. Das Ergebnis von [party.slide][party.slide] sieht dann etwas
 
 [graphviz]: http://www.graphviz.org/
 [party.slide]: http://github.com/mdornseif/Slidescript/blob/master/examples/party.slide
+
+
+### HTML und Javascript
+
+Der Slidescript Compiler kann alle eine Kombination aus HTML-Datei und
+Javascript erstellen, die sich ähnlich, wie ein Tabellenkalkulationsblatt
+verhält. Wenn ein Wert vom Nutzer geändert wird, werden alle anderen Werte
+entsprechend neu berechnet.
+
+
+### XLS
+
+Der Slidescript Compiler kann XLS/Excel Dateien generieren, welche die Formeln
+und Fixen werte aus dem Quellcode beinhalten und z.B. als
+Kalkulationsgrundlage zu nutzen sind.
+
+
