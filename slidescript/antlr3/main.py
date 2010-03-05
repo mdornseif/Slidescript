@@ -34,7 +34,7 @@
 import sys
 import optparse
 
-import antlr3
+from slidescript import antlr3
 
 
 class _Main(object):
