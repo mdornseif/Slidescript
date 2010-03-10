@@ -1,0 +1,5 @@
+    Yvar = Cvar + Bvar
+    Cvar = 1
+    Avar = 2
+    Bvar = 3
+    Xvar = Avar + Cvar

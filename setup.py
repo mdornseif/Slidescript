@@ -4,7 +4,6 @@ setup(
     version = "1.0dev",
     packages = ['slidescript', 'slidescript.antlr3'],
     scripts = ['slidec'],
-    install_requires = ['argparse', 'xlwt'],
     # metadata for upload to PyPI
     author = "Maximillian Dornseif",
     author_email = "md@hudora.de",
@@ -13,4 +12,5 @@ setup(
     url = "http://github.com/mdornseif/Slidescript",
     zip_safe=False,
     # could also include long_description, download_url, classifiers, etc.
+    install_requires = ['argparse', 'xlwt', 'odict'],
 )

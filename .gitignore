@@ -8,3 +8,10 @@ test/test-*.resolved
 Slidescript.egg-info/
 build/
 dist/
+examples/party.dot
+examples/party.html
+examples/party.js
+examples/party.png
+examples/party.tex
+examples/party.vars
+examples/party.xls
