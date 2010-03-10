@@ -12,10 +12,10 @@ tokens { ASSIGNMENT;
 
 /* This will be the entry point of our parser. */
 program:   ( code ) ;
-code: ( stat )+ EOF -> ^(CODE stat+) ;
 
-stat:   additionExp NEWLINE -> additionExp
-    |   VARIABLE '=' additionExp NEWLINE -> ^(ASSIGNMENT VARIABLE additionExp)
+code: ( stat )+ -> ^(CODE stat+) ;
+
+stat:   VARIABLE '=' additionExp (NEWLINE|EOF) -> ^(ASSIGNMENT VARIABLE additionExp)
     |   NEWLINE ->
     ;
 

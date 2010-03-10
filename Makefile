@@ -1,5 +1,7 @@
-default:
+slidescript/Slidescript.tokens: slidescript/Slidescript.g
 	(cd slidescript ; java -cp ../lib/antlrworks-1.3.1.jar org.antlr.Tool Slidescript.g)
+
+test: slidescript/Slidescript.tokens
 	(cd test ; make)
 
 examples:
@@ -22,11 +24,4 @@ install:
 	python setup.py install
 
 
-.PHONY: examples# Dependencies for File:     VerzehrKosten = ('*', u'AnzahlBesucher', 20.0)
-    VerzehrProBesucher = 20.0
-    AnzahlBesucher = ?Unknown
-
-# Dependencies for File:     VerzehrKosten = ('*', u'AnzahlBesucher', 20.0)
-    VerzehrProBesucher = 20.0
-    AnzahlBesucher = ?Unknown
-
+.PHONY: examples test

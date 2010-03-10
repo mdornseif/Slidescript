@@ -3,4 +3,3 @@
     /* this should
     be ignored */
     VerzehrKosten = AnzahlBesucher * VerzehrProBesucher
-    Foo = Bar

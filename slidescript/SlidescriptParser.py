@@ -1,4 +1,4 @@
-# $ANTLR 3.2 Sep 23, 2009 12:02:23 Slidescript.g 2010-03-05 08:18:13
+# $ANTLR 3.2 Sep 23, 2009 12:02:23 Slidescript.g 2010-03-10 07:52:57
 
 import sys
 from antlr3 import *
@@ -22,8 +22,8 @@ T__19=19
 ML_COMMENT=13
 FOURSPACES=15
 T__18=18
-NEWLINE=6
-VARIABLE=7
+VARIABLE=6
+NEWLINE=7
 T__17=17
 MAL=10
 CONSTANT=12
@@ -33,7 +33,7 @@ ASSIGNMENT=4
 # token names
 tokenNames = [
     "<invalid>", "<EOR>", "<DOWN>", "<UP>", 
-    "ASSIGNMENT", "CODE", "NEWLINE", "VARIABLE", "PLUS", "MINUS", "MAL", 
+    "ASSIGNMENT", "CODE", "VARIABLE", "NEWLINE", "PLUS", "MINUS", "MAL", 
     "DURCH", "CONSTANT", "ML_COMMENT", "LINE_COMMENT", "FOURSPACES", "WHITESPACE", 
     "'='", "'('", "')'"
 ]
@@ -144,7 +144,7 @@ class SlidescriptParser(Parser):
 
 
     # $ANTLR start "code"
-    # Slidescript.g:15:1: code : ( stat )+ EOF -> ^( CODE ( stat )+ ) ;
+    # Slidescript.g:16:1: code : ( stat )+ -> ^( CODE ( stat )+ ) ;
     def code(self, ):
 
         retval = self.code_return()
@@ -152,32 +152,29 @@ class SlidescriptParser(Parser):
 
         root_0 = None
 
-        EOF3 = None
         stat2 = None
 
 
-        EOF3_tree = None
-        stream_EOF = RewriteRuleTokenStream(self._adaptor, "token EOF")
         stream_stat = RewriteRuleSubtreeStream(self._adaptor, "rule stat")
         try:
             try:
-                # Slidescript.g:15:5: ( ( stat )+ EOF -> ^( CODE ( stat )+ ) )
-                # Slidescript.g:15:7: ( stat )+ EOF
+                # Slidescript.g:16:5: ( ( stat )+ -> ^( CODE ( stat )+ ) )
+                # Slidescript.g:16:7: ( stat )+
                 pass 
-                # Slidescript.g:15:7: ( stat )+
+                # Slidescript.g:16:7: ( stat )+
                 cnt1 = 0
                 while True: #loop1
                     alt1 = 2
                     LA1_0 = self.input.LA(1)
 
-                    if ((NEWLINE <= LA1_0 <= VARIABLE) or LA1_0 == CONSTANT or LA1_0 == 18) :
+                    if ((VARIABLE <= LA1_0 <= NEWLINE)) :
                         alt1 = 1
 
 
                     if alt1 == 1:
-                        # Slidescript.g:15:9: stat
+                        # Slidescript.g:16:9: stat
                         pass 
-                        self._state.following.append(self.FOLLOW_stat_in_code76)
+                        self._state.following.append(self.FOLLOW_stat_in_code77)
                         stat2 = self.stat()
 
                         self._state.following.pop()
@@ -192,8 +189,6 @@ class SlidescriptParser(Parser):
                         raise eee
 
                     cnt1 += 1
-                EOF3=self.match(self.input, EOF, self.FOLLOW_EOF_in_code81) 
-                stream_EOF.add(EOF3)
 
                 # AST Rewrite
                 # elements: stat
@@ -212,12 +207,12 @@ class SlidescriptParser(Parser):
 
 
                 root_0 = self._adaptor.nil()
-                # 15:21: -> ^( CODE ( stat )+ )
-                # Slidescript.g:15:24: ^( CODE ( stat )+ )
+                # 16:17: -> ^( CODE ( stat )+ )
+                # Slidescript.g:16:20: ^( CODE ( stat )+ )
                 root_1 = self._adaptor.nil()
                 root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(CODE, "CODE"), root_1)
 
-                # Slidescript.g:15:31: ( stat )+
+                # Slidescript.g:16:27: ( stat )+
                 if not (stream_stat.hasNext()):
                     raise RewriteEarlyExitException()
 
@@ -263,7 +258,7 @@ class SlidescriptParser(Parser):
 
 
     # $ANTLR start "stat"
-    # Slidescript.g:17:1: stat : ( additionExp NEWLINE -> additionExp | VARIABLE '=' additionExp NEWLINE -> ^( ASSIGNMENT VARIABLE additionExp ) | NEWLINE ->);
+    # Slidescript.g:18:1: stat : ( VARIABLE '=' additionExp ( NEWLINE | EOF ) -> ^( ASSIGNMENT VARIABLE additionExp ) | NEWLINE ->);
     def stat(self, ):
 
         retval = self.stat_return()
@@ -271,101 +266,79 @@ class SlidescriptParser(Parser):
 
         root_0 = None
 
-        NEWLINE5 = None
-        VARIABLE6 = None
-        char_literal7 = None
-        NEWLINE9 = None
-        NEWLINE10 = None
-        additionExp4 = None
-
-        additionExp8 = None
+        VARIABLE3 = None
+        char_literal4 = None
+        NEWLINE6 = None
+        EOF7 = None
+        NEWLINE8 = None
+        additionExp5 = None
 
 
-        NEWLINE5_tree = None
-        VARIABLE6_tree = None
-        char_literal7_tree = None
-        NEWLINE9_tree = None
-        NEWLINE10_tree = None
+        VARIABLE3_tree = None
+        char_literal4_tree = None
+        NEWLINE6_tree = None
+        EOF7_tree = None
+        NEWLINE8_tree = None
         stream_VARIABLE = RewriteRuleTokenStream(self._adaptor, "token VARIABLE")
         stream_NEWLINE = RewriteRuleTokenStream(self._adaptor, "token NEWLINE")
         stream_17 = RewriteRuleTokenStream(self._adaptor, "token 17")
+        stream_EOF = RewriteRuleTokenStream(self._adaptor, "token EOF")
         stream_additionExp = RewriteRuleSubtreeStream(self._adaptor, "rule additionExp")
         try:
             try:
-                # Slidescript.g:17:5: ( additionExp NEWLINE -> additionExp | VARIABLE '=' additionExp NEWLINE -> ^( ASSIGNMENT VARIABLE additionExp ) | NEWLINE ->)
-                alt2 = 3
-                LA2 = self.input.LA(1)
-                if LA2 == CONSTANT or LA2 == 18:
-                    alt2 = 1
-                elif LA2 == VARIABLE:
-                    LA2_2 = self.input.LA(2)
+                # Slidescript.g:18:5: ( VARIABLE '=' additionExp ( NEWLINE | EOF ) -> ^( ASSIGNMENT VARIABLE additionExp ) | NEWLINE ->)
+                alt3 = 2
+                LA3_0 = self.input.LA(1)
 
-                    if (LA2_2 == 17) :
-                        alt2 = 2
-                    elif (LA2_2 == NEWLINE or (PLUS <= LA2_2 <= DURCH)) :
-                        alt2 = 1
-                    else:
-                        nvae = NoViableAltException("", 2, 2, self.input)
-
-                        raise nvae
-
-                elif LA2 == NEWLINE:
-                    alt2 = 3
+                if (LA3_0 == VARIABLE) :
+                    alt3 = 1
+                elif (LA3_0 == NEWLINE) :
+                    alt3 = 2
                 else:
-                    nvae = NoViableAltException("", 2, 0, self.input)
+                    nvae = NoViableAltException("", 3, 0, self.input)
 
                     raise nvae
 
-                if alt2 == 1:
-                    # Slidescript.g:17:9: additionExp NEWLINE
+                if alt3 == 1:
+                    # Slidescript.g:18:9: VARIABLE '=' additionExp ( NEWLINE | EOF )
                     pass 
-                    self._state.following.append(self.FOLLOW_additionExp_in_stat100)
-                    additionExp4 = self.additionExp()
+                    VARIABLE3=self.match(self.input, VARIABLE, self.FOLLOW_VARIABLE_in_stat99) 
+                    stream_VARIABLE.add(VARIABLE3)
+                    char_literal4=self.match(self.input, 17, self.FOLLOW_17_in_stat101) 
+                    stream_17.add(char_literal4)
+                    self._state.following.append(self.FOLLOW_additionExp_in_stat103)
+                    additionExp5 = self.additionExp()
 
                     self._state.following.pop()
-                    stream_additionExp.add(additionExp4.tree)
-                    NEWLINE5=self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_stat102) 
-                    stream_NEWLINE.add(NEWLINE5)
+                    stream_additionExp.add(additionExp5.tree)
+                    # Slidescript.g:18:34: ( NEWLINE | EOF )
+                    alt2 = 2
+                    LA2_0 = self.input.LA(1)
 
-                    # AST Rewrite
-                    # elements: additionExp
-                    # token labels: 
-                    # rule labels: retval
-                    # token list labels: 
-                    # rule list labels: 
-                    # wildcard labels: 
-
-                    retval.tree = root_0
-
-                    if retval is not None:
-                        stream_retval = RewriteRuleSubtreeStream(self._adaptor, "rule retval", retval.tree)
+                    if (LA2_0 == NEWLINE) :
+                        alt2 = 1
+                    elif (LA2_0 == EOF) :
+                        alt2 = 2
                     else:
-                        stream_retval = RewriteRuleSubtreeStream(self._adaptor, "token retval", None)
+                        nvae = NoViableAltException("", 2, 0, self.input)
+
+                        raise nvae
+
+                    if alt2 == 1:
+                        # Slidescript.g:18:35: NEWLINE
+                        pass 
+                        NEWLINE6=self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_stat106) 
+                        stream_NEWLINE.add(NEWLINE6)
 
 
-                    root_0 = self._adaptor.nil()
-                    # 17:29: -> additionExp
-                    self._adaptor.addChild(root_0, stream_additionExp.nextTree())
+                    elif alt2 == 2:
+                        # Slidescript.g:18:43: EOF
+                        pass 
+                        EOF7=self.match(self.input, EOF, self.FOLLOW_EOF_in_stat108) 
+                        stream_EOF.add(EOF7)
 
 
 
-                    retval.tree = root_0
-
-
-                elif alt2 == 2:
-                    # Slidescript.g:18:9: VARIABLE '=' additionExp NEWLINE
-                    pass 
-                    VARIABLE6=self.match(self.input, VARIABLE, self.FOLLOW_VARIABLE_in_stat116) 
-                    stream_VARIABLE.add(VARIABLE6)
-                    char_literal7=self.match(self.input, 17, self.FOLLOW_17_in_stat118) 
-                    stream_17.add(char_literal7)
-                    self._state.following.append(self.FOLLOW_additionExp_in_stat120)
-                    additionExp8 = self.additionExp()
-
-                    self._state.following.pop()
-                    stream_additionExp.add(additionExp8.tree)
-                    NEWLINE9=self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_stat122) 
-                    stream_NEWLINE.add(NEWLINE9)
 
                     # AST Rewrite
                     # elements: VARIABLE, additionExp
@@ -384,8 +357,8 @@ class SlidescriptParser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 18:42: -> ^( ASSIGNMENT VARIABLE additionExp )
-                    # Slidescript.g:18:45: ^( ASSIGNMENT VARIABLE additionExp )
+                    # 18:48: -> ^( ASSIGNMENT VARIABLE additionExp )
+                    # Slidescript.g:18:51: ^( ASSIGNMENT VARIABLE additionExp )
                     root_1 = self._adaptor.nil()
                     root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(ASSIGNMENT, "ASSIGNMENT"), root_1)
 
@@ -399,11 +372,11 @@ class SlidescriptParser(Parser):
                     retval.tree = root_0
 
 
-                elif alt2 == 3:
+                elif alt3 == 2:
                     # Slidescript.g:19:9: NEWLINE
                     pass 
-                    NEWLINE10=self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_stat142) 
-                    stream_NEWLINE.add(NEWLINE10)
+                    NEWLINE8=self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_stat129) 
+                    stream_NEWLINE.add(NEWLINE8)
 
                     # AST Rewrite
                     # elements: 
@@ -465,15 +438,15 @@ class SlidescriptParser(Parser):
 
         root_0 = None
 
-        PLUS12 = None
-        MINUS13 = None
-        multiplyExp11 = None
+        PLUS10 = None
+        MINUS11 = None
+        multiplyExp9 = None
 
-        multiplyExp14 = None
+        multiplyExp12 = None
 
 
-        PLUS12_tree = None
-        MINUS13_tree = None
+        PLUS10_tree = None
+        MINUS11_tree = None
 
         try:
             try:
@@ -482,66 +455,66 @@ class SlidescriptParser(Parser):
                 pass 
                 root_0 = self._adaptor.nil()
 
-                self._state.following.append(self.FOLLOW_multiplyExp_in_additionExp168)
-                multiplyExp11 = self.multiplyExp()
+                self._state.following.append(self.FOLLOW_multiplyExp_in_additionExp155)
+                multiplyExp9 = self.multiplyExp()
 
                 self._state.following.pop()
-                self._adaptor.addChild(root_0, multiplyExp11.tree)
+                self._adaptor.addChild(root_0, multiplyExp9.tree)
                 # Slidescript.g:26:22: ( ( PLUS | MINUS ) multiplyExp )*
-                while True: #loop4
-                    alt4 = 2
-                    LA4_0 = self.input.LA(1)
+                while True: #loop5
+                    alt5 = 2
+                    LA5_0 = self.input.LA(1)
 
-                    if ((PLUS <= LA4_0 <= MINUS)) :
-                        alt4 = 1
+                    if ((PLUS <= LA5_0 <= MINUS)) :
+                        alt5 = 1
 
 
-                    if alt4 == 1:
+                    if alt5 == 1:
                         # Slidescript.g:26:23: ( PLUS | MINUS ) multiplyExp
                         pass 
                         # Slidescript.g:26:23: ( PLUS | MINUS )
-                        alt3 = 2
-                        LA3_0 = self.input.LA(1)
+                        alt4 = 2
+                        LA4_0 = self.input.LA(1)
 
-                        if (LA3_0 == PLUS) :
-                            alt3 = 1
-                        elif (LA3_0 == MINUS) :
-                            alt3 = 2
+                        if (LA4_0 == PLUS) :
+                            alt4 = 1
+                        elif (LA4_0 == MINUS) :
+                            alt4 = 2
                         else:
-                            nvae = NoViableAltException("", 3, 0, self.input)
+                            nvae = NoViableAltException("", 4, 0, self.input)
 
                             raise nvae
 
-                        if alt3 == 1:
+                        if alt4 == 1:
                             # Slidescript.g:26:24: PLUS
                             pass 
-                            PLUS12=self.match(self.input, PLUS, self.FOLLOW_PLUS_in_additionExp172)
+                            PLUS10=self.match(self.input, PLUS, self.FOLLOW_PLUS_in_additionExp159)
 
-                            PLUS12_tree = self._adaptor.createWithPayload(PLUS12)
-                            root_0 = self._adaptor.becomeRoot(PLUS12_tree, root_0)
+                            PLUS10_tree = self._adaptor.createWithPayload(PLUS10)
+                            root_0 = self._adaptor.becomeRoot(PLUS10_tree, root_0)
 
 
 
-                        elif alt3 == 2:
+                        elif alt4 == 2:
                             # Slidescript.g:26:30: MINUS
                             pass 
-                            MINUS13=self.match(self.input, MINUS, self.FOLLOW_MINUS_in_additionExp175)
+                            MINUS11=self.match(self.input, MINUS, self.FOLLOW_MINUS_in_additionExp162)
 
-                            MINUS13_tree = self._adaptor.createWithPayload(MINUS13)
-                            root_0 = self._adaptor.becomeRoot(MINUS13_tree, root_0)
-
-
+                            MINUS11_tree = self._adaptor.createWithPayload(MINUS11)
+                            root_0 = self._adaptor.becomeRoot(MINUS11_tree, root_0)
 
 
-                        self._state.following.append(self.FOLLOW_multiplyExp_in_additionExp179)
-                        multiplyExp14 = self.multiplyExp()
+
+
+                        self._state.following.append(self.FOLLOW_multiplyExp_in_additionExp166)
+                        multiplyExp12 = self.multiplyExp()
 
                         self._state.following.pop()
-                        self._adaptor.addChild(root_0, multiplyExp14.tree)
+                        self._adaptor.addChild(root_0, multiplyExp12.tree)
 
 
                     else:
-                        break #loop4
+                        break #loop5
 
 
 
@@ -581,15 +554,15 @@ class SlidescriptParser(Parser):
 
         root_0 = None
 
-        MAL16 = None
-        DURCH17 = None
-        atomExp15 = None
+        MAL14 = None
+        DURCH15 = None
+        atomExp13 = None
 
-        atomExp18 = None
+        atomExp16 = None
 
 
-        MAL16_tree = None
-        DURCH17_tree = None
+        MAL14_tree = None
+        DURCH15_tree = None
 
         try:
             try:
@@ -598,66 +571,66 @@ class SlidescriptParser(Parser):
                 pass 
                 root_0 = self._adaptor.nil()
 
-                self._state.following.append(self.FOLLOW_atomExp_in_multiplyExp202)
-                atomExp15 = self.atomExp()
+                self._state.following.append(self.FOLLOW_atomExp_in_multiplyExp189)
+                atomExp13 = self.atomExp()
 
                 self._state.following.pop()
-                self._adaptor.addChild(root_0, atomExp15.tree)
+                self._adaptor.addChild(root_0, atomExp13.tree)
                 # Slidescript.g:31:17: ( ( MAL | DURCH ) atomExp )*
-                while True: #loop6
-                    alt6 = 2
-                    LA6_0 = self.input.LA(1)
+                while True: #loop7
+                    alt7 = 2
+                    LA7_0 = self.input.LA(1)
 
-                    if ((MAL <= LA6_0 <= DURCH)) :
-                        alt6 = 1
+                    if ((MAL <= LA7_0 <= DURCH)) :
+                        alt7 = 1
 
 
-                    if alt6 == 1:
+                    if alt7 == 1:
                         # Slidescript.g:31:18: ( MAL | DURCH ) atomExp
                         pass 
                         # Slidescript.g:31:18: ( MAL | DURCH )
-                        alt5 = 2
-                        LA5_0 = self.input.LA(1)
+                        alt6 = 2
+                        LA6_0 = self.input.LA(1)
 
-                        if (LA5_0 == MAL) :
-                            alt5 = 1
-                        elif (LA5_0 == DURCH) :
-                            alt5 = 2
+                        if (LA6_0 == MAL) :
+                            alt6 = 1
+                        elif (LA6_0 == DURCH) :
+                            alt6 = 2
                         else:
-                            nvae = NoViableAltException("", 5, 0, self.input)
+                            nvae = NoViableAltException("", 6, 0, self.input)
 
                             raise nvae
 
-                        if alt5 == 1:
+                        if alt6 == 1:
                             # Slidescript.g:31:19: MAL
                             pass 
-                            MAL16=self.match(self.input, MAL, self.FOLLOW_MAL_in_multiplyExp206)
+                            MAL14=self.match(self.input, MAL, self.FOLLOW_MAL_in_multiplyExp193)
 
-                            MAL16_tree = self._adaptor.createWithPayload(MAL16)
-                            root_0 = self._adaptor.becomeRoot(MAL16_tree, root_0)
+                            MAL14_tree = self._adaptor.createWithPayload(MAL14)
+                            root_0 = self._adaptor.becomeRoot(MAL14_tree, root_0)
 
 
 
-                        elif alt5 == 2:
+                        elif alt6 == 2:
                             # Slidescript.g:31:24: DURCH
                             pass 
-                            DURCH17=self.match(self.input, DURCH, self.FOLLOW_DURCH_in_multiplyExp209)
+                            DURCH15=self.match(self.input, DURCH, self.FOLLOW_DURCH_in_multiplyExp196)
 
-                            DURCH17_tree = self._adaptor.createWithPayload(DURCH17)
-                            root_0 = self._adaptor.becomeRoot(DURCH17_tree, root_0)
-
-
+                            DURCH15_tree = self._adaptor.createWithPayload(DURCH15)
+                            root_0 = self._adaptor.becomeRoot(DURCH15_tree, root_0)
 
 
-                        self._state.following.append(self.FOLLOW_atomExp_in_multiplyExp213)
-                        atomExp18 = self.atomExp()
+
+
+                        self._state.following.append(self.FOLLOW_atomExp_in_multiplyExp200)
+                        atomExp16 = self.atomExp()
 
                         self._state.following.pop()
-                        self._adaptor.addChild(root_0, atomExp18.tree)
+                        self._adaptor.addChild(root_0, atomExp16.tree)
 
 
                     else:
-                        break #loop6
+                        break #loop7
 
 
 
@@ -697,70 +670,70 @@ class SlidescriptParser(Parser):
 
         root_0 = None
 
-        CONSTANT19 = None
-        VARIABLE20 = None
+        CONSTANT17 = None
+        VARIABLE18 = None
+        char_literal19 = None
         char_literal21 = None
-        char_literal23 = None
-        additionExp22 = None
+        additionExp20 = None
 
 
-        CONSTANT19_tree = None
-        VARIABLE20_tree = None
+        CONSTANT17_tree = None
+        VARIABLE18_tree = None
+        char_literal19_tree = None
         char_literal21_tree = None
-        char_literal23_tree = None
 
         try:
             try:
                 # Slidescript.g:38:5: ( CONSTANT | VARIABLE | '(' additionExp ')' )
-                alt7 = 3
-                LA7 = self.input.LA(1)
-                if LA7 == CONSTANT:
-                    alt7 = 1
-                elif LA7 == VARIABLE:
-                    alt7 = 2
-                elif LA7 == 18:
-                    alt7 = 3
+                alt8 = 3
+                LA8 = self.input.LA(1)
+                if LA8 == CONSTANT:
+                    alt8 = 1
+                elif LA8 == VARIABLE:
+                    alt8 = 2
+                elif LA8 == 18:
+                    alt8 = 3
                 else:
-                    nvae = NoViableAltException("", 7, 0, self.input)
+                    nvae = NoViableAltException("", 8, 0, self.input)
 
                     raise nvae
 
-                if alt7 == 1:
+                if alt8 == 1:
                     # Slidescript.g:38:9: CONSTANT
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    CONSTANT19=self.match(self.input, CONSTANT, self.FOLLOW_CONSTANT_in_atomExp236)
+                    CONSTANT17=self.match(self.input, CONSTANT, self.FOLLOW_CONSTANT_in_atomExp223)
 
-                    CONSTANT19_tree = self._adaptor.createWithPayload(CONSTANT19)
-                    self._adaptor.addChild(root_0, CONSTANT19_tree)
+                    CONSTANT17_tree = self._adaptor.createWithPayload(CONSTANT17)
+                    self._adaptor.addChild(root_0, CONSTANT17_tree)
 
 
 
-                elif alt7 == 2:
+                elif alt8 == 2:
                     # Slidescript.g:39:9: VARIABLE
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    VARIABLE20=self.match(self.input, VARIABLE, self.FOLLOW_VARIABLE_in_atomExp246)
+                    VARIABLE18=self.match(self.input, VARIABLE, self.FOLLOW_VARIABLE_in_atomExp233)
 
-                    VARIABLE20_tree = self._adaptor.createWithPayload(VARIABLE20)
-                    self._adaptor.addChild(root_0, VARIABLE20_tree)
+                    VARIABLE18_tree = self._adaptor.createWithPayload(VARIABLE18)
+                    self._adaptor.addChild(root_0, VARIABLE18_tree)
 
 
 
-                elif alt7 == 3:
+                elif alt8 == 3:
                     # Slidescript.g:40:9: '(' additionExp ')'
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    char_literal21=self.match(self.input, 18, self.FOLLOW_18_in_atomExp256)
-                    self._state.following.append(self.FOLLOW_additionExp_in_atomExp259)
-                    additionExp22 = self.additionExp()
+                    char_literal19=self.match(self.input, 18, self.FOLLOW_18_in_atomExp243)
+                    self._state.following.append(self.FOLLOW_additionExp_in_atomExp246)
+                    additionExp20 = self.additionExp()
 
                     self._state.following.pop()
-                    self._adaptor.addChild(root_0, additionExp22.tree)
-                    char_literal23=self.match(self.input, 19, self.FOLLOW_19_in_atomExp261)
+                    self._adaptor.addChild(root_0, additionExp20.tree)
+                    char_literal21=self.match(self.input, 19, self.FOLLOW_19_in_atomExp248)
 
 
                 retval.stop = self.input.LT(-1)
@@ -788,28 +761,26 @@ class SlidescriptParser(Parser):
  
 
     FOLLOW_code_in_program65 = frozenset([1])
-    FOLLOW_stat_in_code76 = frozenset([6, 7, 12, 18])
-    FOLLOW_EOF_in_code81 = frozenset([1])
-    FOLLOW_additionExp_in_stat100 = frozenset([6])
-    FOLLOW_NEWLINE_in_stat102 = frozenset([1])
-    FOLLOW_VARIABLE_in_stat116 = frozenset([17])
-    FOLLOW_17_in_stat118 = frozenset([7, 12, 18])
-    FOLLOW_additionExp_in_stat120 = frozenset([6])
-    FOLLOW_NEWLINE_in_stat122 = frozenset([1])
-    FOLLOW_NEWLINE_in_stat142 = frozenset([1])
-    FOLLOW_multiplyExp_in_additionExp168 = frozenset([1, 8, 9])
-    FOLLOW_PLUS_in_additionExp172 = frozenset([7, 12, 18])
-    FOLLOW_MINUS_in_additionExp175 = frozenset([7, 12, 18])
-    FOLLOW_multiplyExp_in_additionExp179 = frozenset([1, 8, 9])
-    FOLLOW_atomExp_in_multiplyExp202 = frozenset([1, 10, 11])
-    FOLLOW_MAL_in_multiplyExp206 = frozenset([7, 12, 18])
-    FOLLOW_DURCH_in_multiplyExp209 = frozenset([7, 12, 18])
-    FOLLOW_atomExp_in_multiplyExp213 = frozenset([1, 10, 11])
-    FOLLOW_CONSTANT_in_atomExp236 = frozenset([1])
-    FOLLOW_VARIABLE_in_atomExp246 = frozenset([1])
-    FOLLOW_18_in_atomExp256 = frozenset([7, 12, 18])
-    FOLLOW_additionExp_in_atomExp259 = frozenset([19])
-    FOLLOW_19_in_atomExp261 = frozenset([1])
+    FOLLOW_stat_in_code77 = frozenset([1, 6, 7])
+    FOLLOW_VARIABLE_in_stat99 = frozenset([17])
+    FOLLOW_17_in_stat101 = frozenset([6, 12, 18])
+    FOLLOW_additionExp_in_stat103 = frozenset([7])
+    FOLLOW_NEWLINE_in_stat106 = frozenset([1])
+    FOLLOW_EOF_in_stat108 = frozenset([1])
+    FOLLOW_NEWLINE_in_stat129 = frozenset([1])
+    FOLLOW_multiplyExp_in_additionExp155 = frozenset([1, 8, 9])
+    FOLLOW_PLUS_in_additionExp159 = frozenset([6, 12, 18])
+    FOLLOW_MINUS_in_additionExp162 = frozenset([6, 12, 18])
+    FOLLOW_multiplyExp_in_additionExp166 = frozenset([1, 8, 9])
+    FOLLOW_atomExp_in_multiplyExp189 = frozenset([1, 10, 11])
+    FOLLOW_MAL_in_multiplyExp193 = frozenset([6, 12, 18])
+    FOLLOW_DURCH_in_multiplyExp196 = frozenset([6, 12, 18])
+    FOLLOW_atomExp_in_multiplyExp200 = frozenset([1, 10, 11])
+    FOLLOW_CONSTANT_in_atomExp223 = frozenset([1])
+    FOLLOW_VARIABLE_in_atomExp233 = frozenset([1])
+    FOLLOW_18_in_atomExp243 = frozenset([6, 12, 18])
+    FOLLOW_additionExp_in_atomExp246 = frozenset([19])
+    FOLLOW_19_in_atomExp248 = frozenset([1])
 
 
 

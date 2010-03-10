@@ -4,3 +4,7 @@ Slidescript.tokens
 *.pyc
 pythonenv/
 experimental/
+test/test-*.resolved
+Slidescript.egg-info/
+build/
+dist/

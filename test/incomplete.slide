@@ -1,3 +1,2 @@
     VerzehrProBesucher = 20
     VerzehrKosten = AnzahlBesucher * VerzehrProBesucher
-    Foo = Bar

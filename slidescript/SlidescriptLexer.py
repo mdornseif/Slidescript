@@ -1,4 +1,4 @@
-# $ANTLR 3.2 Sep 23, 2009 12:02:23 Slidescript.g 2010-03-05 08:18:13
+# $ANTLR 3.2 Sep 23, 2009 12:02:23 Slidescript.g 2010-03-10 07:52:57
 
 import sys
 from antlr3 import *
@@ -19,8 +19,8 @@ T__19=19
 ML_COMMENT=13
 FOURSPACES=15
 T__18=18
-NEWLINE=6
-VARIABLE=7
+VARIABLE=6
+NEWLINE=7
 T__17=17
 MAL=10
 CONSTANT=12
