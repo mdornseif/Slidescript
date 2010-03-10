@@ -407,9 +407,7 @@ args = parser.parse_args()
 sourcelines = []
 for line in  args.infile.readlines():
     line = line.decode('utf-8')
-    if not line.startswith('    '):
-        sourcelines.append('')
-    else:
+    if line.startswith('    '):
         sourcelines.append(line.strip())
 
 sourcecode = ('\n'.join(sourcelines)) + '\n'

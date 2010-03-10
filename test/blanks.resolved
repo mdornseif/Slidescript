@@ -1,0 +1,4 @@
+    VerzehrProBesucher = 20.0
+    AnzahlBesucher = 10.0
+    VerzehrKosten = ?Unknown
+    Profit = ('/', 350.0, u'VerzehrKosten')

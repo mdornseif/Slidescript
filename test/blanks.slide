@@ -1,0 +1,13 @@
+
+    VerzehrProBesucher = 20
+
+    AnzahlBesucher = 10
+
+
+    VerzehrKosten = AnzahlBesucher * VerzehrProBesucher
+    
+    Profit = (AnzahlBesucher * 35) / VerzehrKosten
+    
+    
+
+

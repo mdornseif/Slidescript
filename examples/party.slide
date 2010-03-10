@@ -37,4 +37,3 @@ den Eintrittspreis, den wir nehmen müssen, festlegen.
 
     Rohertrag = 0.8
     Eintrittspreis = KostenProBesucher * (1+Rohertrag)
-    Foo = 123
