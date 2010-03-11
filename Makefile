@@ -9,6 +9,8 @@ examples:
 	./pythonenv/bin/python slidec examples/party.slide --js examples/party.js
 	./pythonenv/bin/python slidec examples/party.slide --html examples/party.html
 	./pythonenv/bin/python slidec examples/party.slide --xls examples/party.xls
+	./pythonenv/bin/python slidec examples/party.slide --tex examples/party.tex
+	(cd examples ; pdflatex party.tex party.pdf)
 	./pythonenv/bin/python slidec examples/party.slide --dot examples/party.dot
 	dot -Tpng -v -o examples/party.png examples/party.dot
 
