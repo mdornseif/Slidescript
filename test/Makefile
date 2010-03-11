@@ -7,7 +7,7 @@ default:
 	cmp comment.resolved test-comment.resolved
 	../pythonenv/bin/python ../slidec order.slide --resolved test-order.resolved
 	cmp order.resolved test-order.resolved
-	../pythonenv/bin/python ../slidec literate.slide --resolved test-literate.resolved
+	../pythonenv/bin/python ../slidec -dC literate.slide --resolved test-literate.resolved
 	cmp literate.resolved test-literate.resolved
 	../pythonenv/bin/python ../slidec blanks.slide --resolved test-blanks.resolved
 	cmp blanks.resolved test-blanks.resolved

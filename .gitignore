@@ -15,3 +15,6 @@ examples/party.png
 examples/party.tex
 examples/party.vars
 examples/party.xls
+examples/party.aux
+examples/party.log
+examples/party.pdf
