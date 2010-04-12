@@ -429,7 +429,7 @@ def generate_texfile(inputcode, namespace, outfd):
                     line = '\\section{%s}' % line.strip('# ')
                 outfd.write(line.encode('utf-8'))
             else:
-                outfd.write(line.encode('utf-8'))
+                outfd.write(line.replace('>', '$>$').replace('<', '$<$').encode('utf-8'))
         else:
             line = line.strip().replace('=', ' ')
             varname = line.split(' ')[0]
